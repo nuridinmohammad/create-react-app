@@ -1,12 +1,14 @@
-import { useState } from "react";
 import "./App.css";
-import Counter from "./counter/Counter";
+import TodoList, { Provider, AddTodo } from "./todos/TodoList";
 
 function App() {
   return (
     <div className="App">
       <div className="card">
-        <Counter />
+        <Provider>
+          <AddTodo />
+          <TodoList />
+        </Provider>
       </div>
     </div>
   );
