@@ -1,5 +1,6 @@
 import "./App.css";
 import TodoList, { Provider, AddTodo } from "./todos/TodoList";
+import Todos from "./todos/Todos";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
           <AddTodo />
           <TodoList />
         </Provider>
+        <Todos />
       </div>
     </div>
   );
