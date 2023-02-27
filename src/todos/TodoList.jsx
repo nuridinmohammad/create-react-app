@@ -8,6 +8,7 @@ const actions = {
   ADD_TODO_ITEM: "ADD_TODO_ITEM",
   REMOVE_TODO_ITEM: "REMOVE_TODO_ITEM",
   TOGGLE_COMPLETED: "TOGGLE_COMPLETED",
+  UPDATE_TODO_ID: "UPDATE_TODO_ID",
 };
 
 const reducer = (state, action) => {
@@ -37,6 +38,15 @@ const reducer = (state, action) => {
       );
       return { todoList: updatedTodoList };
     }
+    case actions.UPDATE_TODO_ID: {
+      const updatedTodoList = state.todoList.map((todoItem) =>
+        todoItem.id === action.todoItemId
+          ? { ...todoItem, completed: !todoItem.completed }
+          : todoItem
+      );
+      return { todoList: updatedTodoList };
+    }
+
     default:
       return state;
   }
@@ -57,6 +67,9 @@ export const Provider = ({ children }) => {
     },
     markAsCompleted: (todoItemId) => {
       dispatch({ type: actions.TOGGLE_COMPLETED, todoItemId });
+    },
+    updateTodoItem: (todoItemId) => {
+      dispatch({ type: actions.UPDATE_TODO_ID, todoItemId });
     },
   };
 
@@ -91,20 +104,30 @@ export const AddTodo = () => {
 };
 
 const TodoList = () => {
-  const { todoList, removeTodoItem, markAsCompleted } =
+  const { todoList, removeTodoItem, markAsCompleted, updateTodoItem } =
     React.useContext(TodoListContext);
   return (
     <ul>
       {todoList.map((todoItem) => (
         <li
           className={`todoItem ${todoItem.completed ? "completed" : ""}`}
-          key={todoItem.id}
-          onClick={() => markAsCompleted(todoItem.id)}>
+          key={todoItem.id}>
+          <input
+            type="checkbox"
+            checked={todoItem.complete}
+            onChange={() => markAsCompleted(todoItem.id)}
+          />
           {todoItem.label}
           <button
             className="delete"
             onClick={() => removeTodoItem(todoItem.id)}>
             X
+          </button>
+
+          <button
+            className="delete"
+            onClick={() => updateTodoItem(todoItem.id)}>
+            update
           </button>
         </li>
       ))}
