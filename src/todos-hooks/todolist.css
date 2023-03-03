@@ -1,0 +1,101 @@
+.container {
+  width: 50vw;
+  box-shadow: 0 2px 6px #555;
+  padding: 2.6rem;
+}
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 900;
+  font-size: 2rem;
+  color: #555;
+}
+
+form {
+  width: 100%;
+  height: 40px;
+  margin: 20px 0;
+  display: flex;
+}
+
+form input,
+form button {
+  flex: 3;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #555;
+  margin: 0 6px;
+}
+
+form button {
+  flex: 1;
+  background-color: #555;
+  color: #fff;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+ul li {
+  display: flex;
+  list-style: none;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+ul li .active {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul li input,
+.row input {
+  margin-right: 5px;
+  transform: translateY(1px);
+}
+
+ul li button,
+.row button {
+  border: none;
+  background-color: orange;
+  padding: 6px 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+ul li button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.row #delete {
+  background-color: brown;
+  color: #fff;
+}
+
+label {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 440px) {
+  .container {
+    padding: 10px;
+    width: 90vw;
+    font-size: medium;
+  }
+
+  h1 {
+    font-size: larger;
+  }
+}
