@@ -1,22 +1,36 @@
-import React from "react";
-import { Button } from "./Button";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { DataContext } from "../DataProvider";
 
-const FormInput = () => {
+export default function FormInput() {
+  const [todos, setTodos] = useContext(DataContext);
+  const [todoName, setTodoName] = useState("");
+  const todoInput = useRef();
+
+  const addTodo = (e) => {
+    e.preventDefault();
+    setTodos([...todos, { name: todoName, complete: false }]);
+    setTodoName("");
+    todoInput.current.focus();
+  };
+
+  useEffect(() => {
+    todoInput.current.focus();
+  }, []);
+
   return (
-    <>
-      <form>
-        <input
-          type="text"
-          name="todos"
-          id="todos"
-          required
-          placeholder="What needs to be done?"
-        />
+    <form autoComplete="off" onSubmit={addTodo}>
+      <input
+        type="text"
+        name="todos"
+        id="todos"
+        ref={todoInput}
+        required
+        placeholder="What needs to be done?"
+        value={todoName}
+        onChange={(e) => setTodoName(e.target.value.toLowerCase())}
+      />
 
-        <Button id="add">Create</Button>
-      </form>
-    </>
+      <button type="submit">Create</button>
+    </form>
   );
-};
-
-export default FormInput;
+}
