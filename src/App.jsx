@@ -1,10 +1,13 @@
-import TodoLists from "./todos-hooks/TodoLists";
+import { AddTodo, Provider, TodoList } from "./todos/TodoList";
 
 function App() {
   return (
-    <div>
-      <TodoLists />
-    </div>
+    <>
+      <Provider>
+        <AddTodo />
+        <TodoList />
+      </Provider>
+    </>
   );
 }
 
