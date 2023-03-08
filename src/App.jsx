@@ -1,12 +1,10 @@
-import { AddTodo, Provider, TodoList } from "./todos/TodoList";
+import React from "react";
+import TaskListApp from "./task-list/TaskListApp";
 
 function App() {
   return (
     <>
-      <Provider>
-        <AddTodo />
-        <TodoList />
-      </Provider>
+      <TaskListApp />
     </>
   );
 }
